@@ -1,29 +1,57 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
-Vue.use(VueRouter)
+Vue.use( VueRouter )
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'auth',
+    meta: { requiresAuth: false },
+    component: () => import( '../views/LoginView.vue' )
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/forms',
+    name: 'forms',
+    meta: { requiresAuth: true },
+    component: () => import( '../views/FormList.vue' )
+  },
+  {
+    path: '/form',
+    name: 'form',
+    meta: { requiresAuth: true },
+    component: () => import( '../views/FormItem.vue' )
+  },
+  {
+    path: '/view-form',
+    name: 'viewForm',
+    meta: { requiresAuth: true },
+    component: () => import( '../views/FormView.vue' )
   }
 ]
 
-const router = new VueRouter({
+const router = new VueRouter( {
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+} )
+
+router.beforeEach( ( to, from, next ) => {
+  if( to.matched.some( route => route.meta.requiresAuth ) ) {
+    if( isUserLoggedIn() ) {
+      next()
+    } else {
+      next( '/' )
+    }
+  } else if( to.path === '/' && isUserLoggedIn() ) {
+    next( '/forms' )
+  } else {
+    next()
+  }
+} )
+
+function isUserLoggedIn() {
+  return localStorage.getItem( 'token' ) !== null
+}
 
 export default router

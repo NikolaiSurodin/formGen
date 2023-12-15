@@ -3,10 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import VueToast from 'vue-toast-notification'
+import 'vue-toast-notification/dist/theme-bootstrap.css'
+
+Vue.use( VueToast )
+Vue.prototype.$toast = Vue.$toast
 Vue.config.productionTip = false
 
-new Vue({
+new Vue( {
   router,
   store,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h( App )
+} ).$mount( '#app' )
