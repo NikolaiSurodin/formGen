@@ -1,0 +1,84 @@
+:root {
+    --white: #FFFF;
+    --black: #000;
+    --silver: #F9F9F9;
+    --green: #3EA748;
+    --grey: #F6F6F6;
+}
+
+.h1 {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.h2 {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.subtitle {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.link {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.64px;
+    text-decoration-line: underline;
+    color: var(--green);
+}
+
+.bold {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.small {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.label {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.5;
+}
+
+.nav-link {
+    display: flex;
+
+    &:not(.router-link-exact-active) {
+    }
+
+    &:not([disabled]).router-link-exact-active {
+        color: var(--green);
+        cursor: default;
+
+        &:hover {
+            box-shadow: none;
+            background-color: transparent;
+        }
+    }
+}
